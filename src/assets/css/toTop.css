@@ -1,0 +1,18 @@
+.top-arrow {
+    display: none;
+    position: fixed;
+    cursor: pointer;
+    width: 83px;
+    height: 80px;
+    bottom: 50px;
+    right: 50%;
+    z-index: 1002;
+    transform: translate(720px);
+    background: url('../images/news/toTop.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+
+.top-arrow:hover {
+    background: url('../images/news/toTopActive.png') no-repeat;
+    background-size: 100% 100%;
+}
