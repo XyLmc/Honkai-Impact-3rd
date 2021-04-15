@@ -40,19 +40,19 @@ export default {
         document.documentElement.scrollTop = 0
         switch (index) {
           case 0: {
-            this.$router.push("/home")
+            this.$router.replace("/home")
             break
           }
           case 1: {
-            this.$router.push("/news")
+            this.$router.replace("/news")
             break
           }
           case 2: {
-            this.$router.push("/role")
+            this.$router.replace("/role")
             break
           }
           case 3: {
-            this.$router.push("/wallpaper")
+            this.$router.replace("/wallpaper")
             break
           }
           case 4: {
@@ -64,7 +64,7 @@ export default {
             break
           }
           default: {
-            this.$router.push("/home")
+            this.$router.replace("/home")
             break
           }
         }

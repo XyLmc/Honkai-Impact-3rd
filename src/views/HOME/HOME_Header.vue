@@ -37,8 +37,8 @@
 <!--      新闻的轮播图部分-->
       <div class="swiper-container" v-swiper:mySwiper="swiperOption" id="pa">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" :key="banner" v-for="(banner, index) in banners">
-            <img :src="banner" @click="ImgToNews(index)"
+          <div class="swiper-slide" :key="index" v-for="(banner, index) in banners">
+            <img :src="banner.ext[0].value[0].url" @click="NewsJump(banner.ext[1].value)"
                  style="cursor: pointer; width: 640px; height: 280px; border-radius: 5px">
           </div>
         </div>
@@ -74,6 +74,7 @@ export default {
       ContentId: [],
       NewsDate: [],
       newsSelect: 0,
+      listItem:[],
 
       //pv封面
       pvCover:'',
@@ -91,10 +92,39 @@ export default {
       },
     }
   },
+  computed:{
+    listItemId(){
+      return this.$store.state.getListId
+    },
+    pageNumId(){
+      return this.$store.state.pageNum
+    }
+  },
+  watch:{
+    listItemId(newId,oldId){
+      console.log(oldId+'111')
+      this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum=1&channelId='+newId).then((res)=>{
+        this.listItem=res.data.data.list
+      })
+    },
+    pageNumId(newId,oldId){
+      console.log(oldId)
+      this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum='+newId+'&channelId='+this.listItemId).then((res)=>{
+        let moreList = res.data.data.list
+        this.listItem=this.listItem.concat(moreList)
+      })
+    },
+    listItem(newValue,oldValue){
+      if(newValue.length>oldValue.length){
+        this.$store.state.loading='查看更多'
+      }
+    }
+  },
   created() {
     this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=6&pageNum=1&channelId=168').then((res) => {
       for (var i = 0; i < res.data.data.list.length; i++) {
-        this.banners.push(res.data.data.list[i].ext[0].value[0].url)
+        console.log(res.data.data.list[i])
+        this.banners.push(res.data.data.list[i])
       }
     })
     this.GetNewsState(0)
@@ -105,6 +135,7 @@ export default {
       this.pvCover = res.data.data.list[0].ext[0].value[0].url
       this.$store.state.homeVideo = res.data.data.list[0].ext[1].value[0].url
     })
+    console.log(this.$store.state.details)
   },
   methods: {
     pvAppear(){
@@ -112,13 +143,18 @@ export default {
     },
     More() {
       this.$store.commit('ChangeNav', 1)
-      this.$router.push("/news")
+      this.$router.replace("/news")
     },
     NewsJump(index) {
+      if(index.indexOf("/news/")){
+        window.open(index)
+        return
+      }
+      index = index.replace("/news/","")
       document.documentElement.scrollTop = 0
       this.$store.state.details = index
       this.$store.commit('ChangeNav', 1)
-      this.$router.push("/newsContent")
+      this.$router.replace("/newsContent")
     },
     GetNewsState(index) {
       this.NewsState = []
@@ -170,9 +206,13 @@ export default {
         this.GetNewsState(this.newsSelect)
       }
     },
-    ImgToNews(index) {
-      console.log(index)
-    }
+    // ImgToNews(value) {
+    //   document.documentElement.scrollTop=0
+    //   this.$store.state.listItem=value
+    //   this.$store.state.details=this.listItem[value].contentId
+    //   this.$router.replace('home')
+    //   this.$router.push('newsContent')
+    // }
   }
 }
 </script>
@@ -375,6 +415,10 @@ export default {
   color: #fff;
   border-radius: 6px;
   transform: skew(-20deg)
+}
+.HOME_Header_News_Btn:hover{
+  color: #0097de;
+  background: #fff
 }
 
 .HOME_Header_News_Btn span {

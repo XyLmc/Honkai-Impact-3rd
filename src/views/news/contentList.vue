@@ -64,7 +64,6 @@ export default {
   created() {
     this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum=1&channelId='+this.listItemId).then((res)=>{
       this.listItem=res.data.data.list
-      console.log(res.data.data.list)
     })
   },
   filters:{
