@@ -42,7 +42,6 @@
                  style="cursor: pointer; width: 640px; height: 280px; border-radius: 5px">
           </div>
         </div>
-        <div class="Pagination_Board"></div>
         <div class="swiper-pagination"></div>
       </div>
 <!--      新闻的信息上的按钮部分-->
@@ -88,6 +87,8 @@ export default {
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
+          bulletClass:'my-bullet',
+          bulletActiveClass: 'my-bullet-active',
         },
       },
     }
@@ -102,13 +103,13 @@ export default {
   },
   watch:{
     listItemId(newId,oldId){
-      console.log(oldId+'111')
+      oldId.replace()
       this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum=1&channelId='+newId).then((res)=>{
         this.listItem=res.data.data.list
       })
     },
     pageNumId(newId,oldId){
-      console.log(oldId)
+      oldId.replace()
       this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum='+newId+'&channelId='+this.listItemId).then((res)=>{
         let moreList = res.data.data.list
         this.listItem=this.listItem.concat(moreList)
@@ -123,7 +124,6 @@ export default {
   created() {
     this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=6&pageNum=1&channelId=168').then((res) => {
       for (var i = 0; i < res.data.data.list.length; i++) {
-        console.log(res.data.data.list[i])
         this.banners.push(res.data.data.list[i])
       }
     })
@@ -135,7 +135,6 @@ export default {
       this.pvCover = res.data.data.list[0].ext[0].value[0].url
       this.$store.state.homeVideo = res.data.data.list[0].ext[1].value[0].url
     })
-    console.log(this.$store.state.details)
   },
   methods: {
     pvAppear(){
@@ -206,13 +205,6 @@ export default {
         this.GetNewsState(this.newsSelect)
       }
     },
-    // ImgToNews(value) {
-    //   document.documentElement.scrollTop=0
-    //   this.$store.state.listItem=value
-    //   this.$store.state.details=this.listItem[value].contentId
-    //   this.$router.replace('home')
-    //   this.$router.push('newsContent')
-    // }
   }
 }
 </script>
@@ -479,15 +471,19 @@ export default {
   color: #fedf4c
 }
 
-.Pagination_Board {
-  position: absolute;
-  width: 120px;
-  height: 50px;
-  border-radius: 20px;
-  top: 250px;
-  left: 260px;
-  background: #fff;
-  z-index: 1
+/deep/ .my-bullet {
+  display: block;
+  width:12px;
+  height: 12px;
+  background: url("../../assets/images/BengHuai/bullet.png") no-repeat;
+  cursor: pointer;
+  z-index: 9;
+  opacity: 0.2;
+  float: left;
+}
+/deep/ .my-bullet-active {
+  background: url("../../assets/images/BengHuai/bullet-active.png") no-repeat;
+  opacity: 1;
 }
 
 .swiper-container {
@@ -495,11 +491,22 @@ export default {
   left: 20px;
   top: 23px;
   width: 640px;
-  height: 280px;
-  --swiper-pagination-color: #6ee2ff
+  height: 289px;
 }
 
-.swiper-pagination {
-  height: 18px
+/deep/ .swiper-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  left: 50% !important;
+  bottom: 0px !important;
+  transform: translateX(-50%) !important;
+  width: 144px !important;
+  height: 20px;
+  line-height: 20px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 0 12px;
 }
 </style>

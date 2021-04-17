@@ -14,9 +14,6 @@ export default {
   name: 'Offcial',
   components: {
     Footer, Navigation,
-  },
-  created() {
-    this.$router.replace('/home')
   }
 }
 </script>

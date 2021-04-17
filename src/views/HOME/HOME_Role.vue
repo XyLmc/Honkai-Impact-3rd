@@ -1,5 +1,5 @@
 <template>
-  <div class="role">
+  <div class="role" v-if="Object.keys(roleInfo).length!==0">
     <div class="role-wrap">
       <div v-if="bigImgDel" class="bigImg" :style="{bottom:bigImgBottom+'px'}">
         <!--        女武神大立绘图-->

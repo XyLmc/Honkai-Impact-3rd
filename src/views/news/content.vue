@@ -14,7 +14,7 @@
 import contentTop from "@/views/news/contentTop";
 import contentList from "@/views/news/contentList";
 export default {
-  name: "content",
+  name: "news-content",
   data(){
     return{
     }

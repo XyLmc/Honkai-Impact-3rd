@@ -3,9 +3,7 @@
     <div class="animate-item">
       <div class="animate-item-img" :style="{left:leftNum+'px'}">
         <a :href=item.ext[1].value v-for="(item,index) in animateItem" :key="index" target="_blank">
-        <img
-            :src=item.ext[0].value[0].url
-            >
+        <img :src=item.ext[0].value[0].url>
         </a>
       </div>
     </div>
@@ -33,7 +31,7 @@ export default {
       animateItem: [],
       leftNum:0,
       nowId:0,
-      time:{}
+      time:{},
     }
   },
   methods:{
