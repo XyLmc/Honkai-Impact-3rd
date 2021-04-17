@@ -1,23 +1,15 @@
 <template>
   <div class="hot">
-    <div class="animate-item">
-      <div class="animate-item-img" :style="{left:leftNum+'px'}">
-        <a :href=item.ext[1].value v-for="(item,index) in animateItem" :key="index" target="_blank">
-        <img :src=item.ext[0].value[0].url>
-        </a>
+    <div class="swiper-container" v-swiper:mySwiper="wallOption">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="cursor: pointer;" v-for="(item,index) in animateItem" :key="index" @click="openWindow(item.ext[1].value)">
+          <img :src=item.ext[0].value[0].url ondragstart="return false">
+        </div>
       </div>
-    </div>
-    <div class="actions">
-      <div
-          class="action"
-          v-for="(item,index) in animateItem"
-          :key="index"
-          :class="{'action-active':index==nowId}"
-          @click="change(index)"
-          @mouseenter="stoptime"
-          @mouseleave="startTime"
-      >
-        <img :src=item.ext[2].value[0].url>
+      <div class="swiper-pagination">
+        <div class="swiper-pagination-bullet" v-for="(item,index) in animateItem" :key="index">
+          <img :src=item.ext[0].value[0].url ondragstart="return false">
+        </div>
       </div>
     </div>
   </div>
@@ -29,47 +21,29 @@ export default {
   data() {
     return {
       animateItem: [],
-      leftNum:0,
-      nowId:0,
-      time:{},
+      wallOption: {
+        loop: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        observer: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      },
     }
   },
   methods:{
-    change(value){
-      this.nowId = value
-      this.leftNum = -(value*1235)
-    },
-    stoptime(){
-      clearInterval(this.time)
-    },
-    startTime(){
-      this.time = setInterval(()=>{
-        this.leftNum-=1235
-        this.nowId+=1
-        if(this.leftNum == -6175){
-          this.leftNum = 0
-        }
-        if(this.nowId == 5){
-          this.nowId = 0
-        }
-      },3000)
+    openWindow(value){
+      window.open(value)
     }
   },
   created() {
     this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum=1&channelId=179').then((res) => {
-      console.log(res.data.data.list)
       this.animateItem = res.data.data.list
     })
-    this.time = setInterval(()=>{
-      this.leftNum-=1235
-      this.nowId+=1
-      if(this.leftNum == -6175){
-        this.leftNum = 0
-      }
-      if(this.nowId == 5){
-        this.nowId = 0
-      }
-    },3000)
   }
 }
 </script>
@@ -86,44 +60,51 @@ export default {
   position: relative;
 }
 
-.animate-item {
-  width: 1235px;
-  height: 303px;
-  border-radius: 5px;
-  overflow: hidden;
-  position: relative;
-}
-
-.animate-item-img {
-  width: 6175px;
-  float: left;
-  position: absolute;
-  transition: all .6s;
-}
-
 .animate-item-img img {
   width: auto;
   height: auto;
 }
-.actions {
-  position: absolute;
-  right: 20px;
-  bottom: 40px;
+
+.swiper-container{
+  position: relative;
+}
+
+.swiper-pagination {
+  padding: 0px 15px 14px 0px;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   z-index: 98;
 }
-.action {
-  cursor: pointer;
-  margin-right: 10px;
-  border: 2px solid rgba(255,255,255,.3);
-}
-.action:hover, .action-active{
-  border: 2px solid #33c8ff;
-}
-.actions img {
+.swiper-pagination /deep/ .swiper-pagination-bullet{
   display: block;
   width: 105px;
   height: 65px;
+  border-radius: 0px;
+  background-size: 100% 100%;
+  border: 2px solid rgba(255,255,255,.3);
+  opacity: 1;
 }
+.swiper-pagination /deep/ .swiper-pagination-bullet:hover{
+  border: 2px solid #33c8ff;
+}
+.swiper-pagination /deep/ .swiper-pagination-bullet-active{
+  border: 2px solid #33c8ff;
+}
+.swiper-pagination /deep/ .swiper-pagination-bullet:nth-child(1){
+  background: url("../../assets/images/wallpaper/hot1.jpg") no-repeat;
+}
+.swiper-pagination /deep/ .swiper-pagination-bullet:nth-child(2){
+  background: url("../../assets/images/wallpaper/hot2.jpg") no-repeat;
+}
+.swiper-pagination /deep/ .swiper-pagination-bullet:nth-child(3){
+  background: url("../../assets/images/wallpaper/hot3.png") no-repeat;
+}
+.swiper-pagination /deep/ .swiper-pagination-bullet:nth-child(4){
+  background: url("../../assets/images/wallpaper/hot4.jpg") no-repeat;
+}
+.swiper-pagination /deep/ .swiper-pagination-bullet:nth-child(5){
+  background: url("../../assets/images/wallpaper/hot5.jpg") no-repeat;
+}
+
 </style>

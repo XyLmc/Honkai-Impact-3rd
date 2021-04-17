@@ -2,7 +2,7 @@
 <!--  整个视频页面用于判断显示与否-->
   <div v-if="videoAppear" aria-expanded="true" data-modal="video-modal" class="overlay">
 <!--    点击视频外的部分关闭视频-->
-    <div class="background-click" @click="disappear">
+    <div class="background-click">
       <div class="modal-top-right"></div>
       <div role="dialog" aria-modal="true" class="modal-box modal"
            style="top: 124px; left: 50%; width: 1280px; height: auto; transform: translateX(-50%)">
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "video",
+  name: "skillVideo",
   data() {
     return {
       roleItem: this.$store.state.roleItem,

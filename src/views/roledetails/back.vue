@@ -1,5 +1,5 @@
 <template>
-  <a href="/valkyries" class="back-btn nuxt-link-active">
+  <a class="back-btn nuxt-link-active" @click="reBack">
     <span>
         返回列表
       </span>
@@ -8,7 +8,12 @@
 
 <script>
 export default {
-  name: "back"
+  name: "back",
+  methods:{
+    reBack(){
+      this.$router.replace('role')
+    }
+  }
 }
 </script>
 

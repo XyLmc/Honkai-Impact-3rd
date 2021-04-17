@@ -35,16 +35,13 @@ export default {
       this.$store.state.roleItem = item
       this.$store.state.roleEngName = Eng
       this.$store.state.activeIndex = index
-      this.$router.push('/role')
+      this.$router.replace('/role')
       setTimeout(()=>{
-        this.$router.push('/roledetail')
+        this.$router.replace('/roledetail')
       })
       document.documentElement.scrollTop = 0
     }
   },
-  mounted() {
-    console.log(this.roleItem)
-  }
 }
 </script>
 

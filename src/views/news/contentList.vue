@@ -58,7 +58,7 @@ export default {
       document.documentElement.scrollTop=0
       this.$store.state.listItem=value
       this.$store.state.details=this.listItem[value].contentId
-      this.$router.push('newsContent')
+      this.$router.replace('newsContent')
     }
   },
   created() {

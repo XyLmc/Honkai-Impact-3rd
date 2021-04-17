@@ -38,7 +38,7 @@ export default {
       this.$store.state.roleItem = item
       this.$store.state.roleEngName = Eng
       this.$store.state.activeIndex = index
-      this.$router.push('/roledetail')
+      this.$router.replace('/roledetail')
     }
   },
   mounted(){
