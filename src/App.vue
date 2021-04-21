@@ -1,15 +1,19 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <Navigation></Navigation>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
 export default {
   name: 'App',
-  created() {
-    this.$router.replace('home').catch(err=>err)
+  components: {
+    Navigation,
+    Footer
   }
 }
 </script>
