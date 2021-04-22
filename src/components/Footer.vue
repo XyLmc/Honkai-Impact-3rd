@@ -1,5 +1,5 @@
 <template>
-  <div class="footer" loading="lazy" id="p4" @mousewheel.prevent>
+  <div class="footer" id="p4">
     <div class="footerListBg">
       <ul class="footerList">
         <li><img src="../assets/images/Footer/weibo.png" width="32px" height="32px"></li>
