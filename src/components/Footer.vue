@@ -1,6 +1,6 @@
 <template>
   <div class="footer" id="p4">
-    <div class="footerListBg">
+    <div class="footer-list-bg">
       <ul class="footerList">
         <li><img src="../assets/images/Footer/weibo.png" width="32px" height="32px"></li>
         <li><img src="../assets/images/Footer/wechat.png" width="32px" height="32px"></li>
@@ -74,7 +74,7 @@ export default {
   z-index: 1000;
 }
 
-.footerListBg {
+.footer-list-bg {
   position: relative;
   top: 0px;
   display: inline-block;
