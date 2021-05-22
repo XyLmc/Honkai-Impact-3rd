@@ -39,6 +39,9 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll',this.handScroll)
+  },
+  created() {
+    this.$store.state.NavSelect = 1
   }
 }
 </script>

@@ -12,6 +12,9 @@ export default {
   name: "Home.vue",
   components:{
     Head,wrap
+  },
+  created() {
+    this.$store.state.NavSelect = 2
   }
 }
 </script>

@@ -14,7 +14,10 @@ import titleSecond from "@/views/wallpaper/title-second";
 import Paper from "@/views/wallpaper/paper";
 export default {
   name: "Home",
-  components: {Paper, Title,hot,titleSecond}
+  components: {Paper, Title,hot,titleSecond},
+  created() {
+    this.$store.state.NavSelect = 3
+  }
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="HOME_Header_Main">
+  <div class="HOME_Header">
     <video poster="../../assets/images/BengHuai/BodyImage1.jpg" autoplay="autoplay" autobuffer="" loop="loop"
            muted="muted" class="HOME_Header_Video">
       <source src="../../assets/video/Home_HeaderVideo.mp4" type="audio/mp4">
@@ -209,7 +209,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 * {
   margin: 0;
   padding: 0;
@@ -217,32 +217,152 @@ export default {
   user-select: none
 }
 
-.HOME_Header_Main {
+.HOME_Header{
   position: relative;
   height: 1386px;
-  overflow: hidden
-}
-
-.HOME_Header_Video {
-  position: absolute;
-  top: 0;
-  left: 0
-}
-
-.HOME_Header_Logo {
-  position: absolute;
-  left: 50%;
-  top: 112px;
-  margin-left: 356px;
-  width: 250px
-}
-
-.HOME_Header_Age {
-  position: absolute;
-  left: 50%;
-  top: 125px;
-  margin-left: 630px;
-  width: 120px
+  overflow: hidden;
+  &_Video{
+    position: absolute;
+    top: 0;
+    left: 0
+  }
+  &-Logo{
+    position: absolute;
+    left: 50%;
+    top: 112px;
+    margin-left: 356px;
+    width: 250px
+  }
+  &_Age{
+    position: absolute;
+    left: 50%;
+    top: 125px;
+    margin-left: 630px;
+    width: 120px
+  }
+  &_DownLoad {
+    position: absolute;
+    width: 650px;
+    height: 140px;
+    bottom: 430px;
+    left: 50%;
+    transform: translateX(-50%);
+    &_Pv {
+      position: absolute;
+      top: 0px;
+      width: 250px;
+      height: 140px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 5px;
+      padding: 5px;
+      display: flex;
+      video{
+        width: 240px;
+        height: 130px;
+        opacity: 0.8
+      }
+    }
+    &_Box {
+      position: absolute;
+      left: 260px;
+      height: 140px;
+      width: 390px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 2px 10px 0 rgba(1, 1, 1, 0.3);
+      border-radius: 5px;
+      padding: 5px;
+      display: flex;
+      a {
+        position: absolute;
+        font-weight: bold;
+        writing-mode: tb-rl;
+        text-decoration: none;
+        color: #00a5e2;
+        top: 32px;
+        left: 144px
+      }
+      p {
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        position: absolute;
+        left: 46px;
+        top: 14px
+      }
+      &_QRBoard {
+        position: absolute;
+        left: 10px;
+        top: 7px;
+        width: 166px;
+        height: 122px
+      }
+      &_QRCode {
+        position: absolute;
+        left: 24px;
+        top: 29px;
+        width: 93px
+      }
+      &_Btn1 {
+        background: #00a5e2;
+        position: absolute;
+        width: 193px;
+        height: 50px;
+        left: 184px;
+        top: 15px;
+        border-radius: 5px;
+        &:hover{
+          background: #33c8ff
+        }
+      }
+      &_Btn2 {
+        background: #4eb700;
+        position: absolute;
+        width: 193px;
+        height: 50px;
+        left: 184px;
+        top: 77px;
+        border-radius: 5px;
+        &:hover {
+          background: #5edf00
+        }
+      }
+    }
+  }
+  &_News {
+    position: absolute;
+    width: 1246px;
+    height: 326px;
+    bottom: 54px;
+    left: 50%;
+    background: url('../../assets/images/BengHuai/HeaderNewsBoard.png') no-repeat;
+    background-size: 100% 100%;
+    transform: translateX(-50%);
+    &_Btn {
+      position: absolute;
+      color: #fff;
+      text-align: center;
+      top: 23px;
+      width: 100px;
+      height: 40px;
+      background: #0097de;
+      cursor: pointer;
+      color: #fff;
+      border-radius: 6px;
+      transform: skew(-20deg);
+      &:hover{
+        color: #0097de;
+        background: #fff
+      }
+      span {
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 39px;
+        display: inline-block;
+        transform: skew(20deg)
+      }
+    }
+  }
 }
 
 .lightStick{
@@ -267,15 +387,6 @@ export default {
 
 }
 
-.HOME_Header_DownLoad {
-  position: absolute;
-  width: 650px;
-  height: 140px;
-  bottom: 430px;
-  left: 50%;
-  transform: translateX(-50%)
-}
-
 .video-btn{
   position: absolute;
   width: 65px;
@@ -286,141 +397,11 @@ export default {
   background: url("../../assets/images/BengHuai/video-btn.png") no-repeat;
   background-size: 100% 100%;
   transform: translate3d(-50%,-50%,0);
+  &:hover{
+    background: url("../../assets/images/BengHuai/video-btn-on.png") no-repeat;
+    background-size: 100% 100%;
+  }
 }
-.video-btn:hover{
-  background: url("../../assets/images/BengHuai/video-btn-on.png") no-repeat;
-  background-size: 100% 100%;
-}
-
-.HOME_Header_DownLoad_Pv {
-  position: absolute;
-  top: 0px;
-  width: 250px;
-  height: 140px;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 5px;
-  padding: 5px;
-  display: flex
-}
-
-.HOME_Header_DownLoad_Pv video {
-  width: 240px;
-  height: 130px;
-  opacity: 0.8
-}
-
-.HOME_Header_DownLoad_Box {
-  position: absolute;
-  left: 260px;
-  height: 140px;
-  width: 390px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 2px 10px 0 rgba(1, 1, 1, 0.3);
-  border-radius: 5px;
-  padding: 5px;
-  display: flex
-}
-
-.HOME_Header_DownLoad_Box a {
-  position: absolute;
-  font-weight: bold;
-  writing-mode: tb-rl;
-  text-decoration: none;
-  color: #00a5e2;
-  top: 32px;
-  left: 144px
-}
-
-.HOME_Header_DownLoad_Box_QRBoard {
-  position: absolute;
-  left: 10px;
-  top: 7px;
-  width: 166px;
-  height: 122px
-}
-
-.HOME_Header_DownLoad_Box_QRCode {
-  position: absolute;
-  left: 24px;
-  top: 29px;
-  width: 93px
-}
-
-.HOME_Header_DownLoad_Box p {
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  position: absolute;
-  left: 46px;
-  top: 14px
-}
-
-.HOME_Header_DownLoad_Box_Btn1 {
-  background: #00a5e2;
-  position: absolute;
-  width: 193px;
-  height: 50px;
-  left: 184px;
-  top: 15px;
-  border-radius: 5px
-}
-
-.HOME_Header_DownLoad_Box_Btn1:hover {
-  background: #33c8ff
-}
-
-.HOME_Header_DownLoad_Box_Btn2 {
-  background: #4eb700;
-  position: absolute;
-  width: 193px;
-  height: 50px;
-  left: 184px;
-  top: 77px;
-  border-radius: 5px
-}
-
-.HOME_Header_DownLoad_Box_Btn2:hover {
-  background: #5edf00
-}
-
-.HOME_Header_News {
-  position: absolute;
-  width: 1246px;
-  height: 326px;
-  bottom: 54px;
-  left: 50%;
-  background: url('../../assets/images/BengHuai/HeaderNewsBoard.png') no-repeat;
-  background-size: 100% 100%;
-  transform: translateX(-50%)
-}
-
-.HOME_Header_News_Btn {
-  position: absolute;
-  color: #fff;
-  text-align: center;
-  top: 23px;
-  width: 100px;
-  height: 40px;
-  background: #0097de;
-  cursor: pointer;
-  color: #fff;
-  border-radius: 6px;
-  transform: skew(-20deg)
-}
-.HOME_Header_News_Btn:hover{
-  color: #0097de;
-  background: #fff
-}
-
-.HOME_Header_News_Btn span {
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 39px;
-  display: inline-block;
-  transform: skew(20deg)
-}
-
 .NewsBtn_Select {
   color: #0097de;
   background: #fff
@@ -471,7 +452,7 @@ export default {
   color: #fedf4c
 }
 
-/deep/ .my-bullet {
+::v-deep .my-bullet {
   display: block;
   width:12px;
   height: 12px;
@@ -481,7 +462,7 @@ export default {
   opacity: 0.2;
   float: left;
 }
-/deep/ .my-bullet-active {
+::v-deep .my-bullet-active {
   background: url("../../assets/images/BengHuai/bullet-active.png") no-repeat;
   opacity: 1;
 }
@@ -494,7 +475,7 @@ export default {
   height: 289px;
 }
 
-/deep/ .swiper-pagination {
+::v-deep .swiper-pagination {
   display: flex;
   justify-content: space-between;
   align-items: center;
