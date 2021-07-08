@@ -9,7 +9,7 @@ export default {
   name: "contentBack",
   methods:{
     back(){
-      this.$router.replace('news')
+      this.$router.replace('../../news')
     }
   }
 }

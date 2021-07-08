@@ -5,11 +5,11 @@
       <span>&lt;</span>
       上一篇
     </a>
-    <a v-show="isShow==1" @click="next">
+    <a @click="next">
       下一篇
       <span>&gt;</span>
     </a>
-    <div v-show="isShow==0" class="nomore">
+    <div v-show="false" class="nomore">
       没有更多了
     </div>
   </div>
@@ -18,45 +18,24 @@
 <script>
 export default {
   name: "details-footer",
-  data(){
-    return{
-      isShow:''
-    }
+  props: {
+    channelId:Array,
+    time:String,
+    ContentId:String
   },
   methods:{
     pre(){
-      document.documentElement.scrollTop=0
-      this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum=1&channelId='+this.$store.state.getListId).then((res)=>{
-        this.$store.state.listItem=this.$store.state.listItem+1
-        this.$store.state.details = res.data.data.list[this.$store.state.listItem].contentId
-        this.$router.replace('news')
-        setTimeout(()=>{
-          this.$router.replace('newsContent')
-        })
-      })
     },
     next(){
-      document.documentElement.scrollTop=0
-      this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum=1&channelId='+this.$store.state.getListId).then((res)=>{
-        this.$store.state.listItem=this.$store.state.listItem-1
-        this.$store.state.details = res.data.data.list[this.$store.state.listItem].contentId
-        this.$router.replace('news')
-        setTimeout(()=>{
-          this.$router.replace('newsContent')
-        })
-      })
     }
   },
-  mounted() {
-    this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum=1&channelId='+this.$store.state.getListId).then((res)=>{
-      let num = res.data.data.list[0].contentId
-      console.log(num+'1111111')
-      console.log(this.$store.state.details+1)
-      if(this.$store.state.details==num){
-        this.isShow=0
-      }else{
-        this.isShow=1
-      }
+  created() {
+    console.log(this.channelId[0])
+    console.log(this.ContentId)
+    this.time = this.time.replace(' ','+')
+    console.log(this.time)
+    this.axios.post(`https://bh3.mihoyo.com/content/bh3Cn/aroundContent?channelId=171&contentId=15910&start_time=2021-06-10+11:00:00`).then((res)=>{
+      console.log(res)
     })
   }
 }

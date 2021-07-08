@@ -1,5 +1,7 @@
 <template>
+<!--  崩坏三新闻页列表信息-->
   <div class="news-list">
+<!--    每个新闻栏目点击后跳转到新闻页面-->
     <div class="newsItem" v-for="(item,index) in listItem" :key="index" @click="toNewsContent(index)">
         <div class="news-item__img">
           <img :src=item.ext[0].value[0].url alt="米哈游">
@@ -56,9 +58,13 @@ export default {
   methods:{
     toNewsContent(value){
       document.documentElement.scrollTop=0
-      this.$store.state.listItem=value
-      this.$store.state.details=this.listItem[value].contentId
-      this.$router.replace('newsContent')
+      this.$router.replace({
+        name:'newsContent',
+        params:{
+          listItem:value,
+          Content:this.listItem[value].contentId
+        }
+      })
     }
   },
   created() {

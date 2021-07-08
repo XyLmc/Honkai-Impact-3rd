@@ -22,7 +22,9 @@ export default new VueRouter({
         }, {
             path: '/news', component: news
         }, {
-            path: '/newsContent', component: newsDetail
+            path: '/newsContent/:listItem/:Content',
+            name:'newsContent',
+            component: newsDetail
         }, {
             path: '/role', component: role
         }, {

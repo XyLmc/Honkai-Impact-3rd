@@ -51,7 +51,7 @@
       </div>
 <!--      新闻的标题还有时间部分-->
       <div class="HOME_Header_News_State" :key="state" v-for="(state, index) in NewsState" :style="NewsState_Top[index]"
-           @click="NewsJump(ContentId[index])">
+           @click="goToNewContent(ContentId[index])">
         <div class="message">{{ state }}</div>
         <span style="position: absolute; right: 0px; top: 0px">{{ NewsDate[index] }}</span>
       </div>
@@ -149,11 +149,16 @@ export default {
         window.open(index)
         return
       }
-      index = index.replace("/news/","")
-      document.documentElement.scrollTop = 0
-      this.$store.state.details = index
-      this.$store.commit('ChangeNav', 1)
-      this.$router.replace("/newsContent")
+      else{
+        index = index.replace("/news/","")
+        document.documentElement.scrollTop = 0
+        // this.$store.state.details = index
+        this.$store.commit('ChangeNav', 1)
+        this.$router.replace("/newsContent/0/"+index)
+      }
+    },
+    goToNewContent(index){
+      this.$router.replace("/newsContent/0/"+index)
     },
     GetNewsState(index) {
       this.NewsState = []

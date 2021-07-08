@@ -1,14 +1,15 @@
 <template>
   <div class="bg">
-    <con-tent></con-tent>
+    <new-content></new-content>
     <div class="top-arrow" :style="{display:isShow}" @click="toTop"></div>
   </div>
 </template>
 
 <script>
-import conTent from "@/views/newContent/content";
+import NewContent from "../newContent/newContent";
 export default {
   name: "Home",
+  components: {NewContent},
   data(){
     return{
       isShow:'none'
@@ -26,9 +27,6 @@ export default {
         this.isShow='none'
       }
     },
-  },
-  components:{
-    conTent
   },
   mounted() {
     window.addEventListener('scroll',this.handScroll)

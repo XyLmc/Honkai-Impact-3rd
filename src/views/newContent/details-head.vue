@@ -16,13 +16,7 @@
 <script>
 export default {
   name: "details-head",
-  data(){
-    return{
-      title:'',
-      time:'',
-      type:'',
-    }
-  },
+    props:['title','time','type'],
   filters:{
     timeFilter(value){
       return value.slice(0,10)
@@ -42,13 +36,6 @@ export default {
       }
     }
   },
-  mounted() {
-    this.axios.get('https://www.bh3.com/content/bh3Cn/getContent?contentId='+this.$store.state.details+'&around=1').then((res)=>{
-      this.title = res.data.data.title
-      this.time = res.data.data.start_time
-      this.type = res.data.data.channelId
-    })
-  }
 }
 </script>
 

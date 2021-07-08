@@ -2,10 +2,10 @@
   <div class="news-content">
     <div class="news-content-wrap" id="detail">
       <content-back></content-back>
-      <banner></banner>
-      <de-tail-head></de-tail-head>
-      <de-tail></de-tail>
-      <de-tail-foot></de-tail-foot>
+      <banner :imgSrc="imgSrc"></banner>
+      <de-tail-head :title="title" :time="time" :type="type"></de-tail-head>
+      <de-tail :detailsContent="detailsContent"></de-tail>
+      <de-tail-foot :channelId="type" :time="time" :ContentId="ContentId"></de-tail-foot>
     </div>
   </div>
 </template>
@@ -17,9 +17,14 @@ import deTail from "@/views/newContent/details";
 import deTailHead from "@/views/newContent/details-head"
 import deTailFoot from "@/views/newContent/details-footer"
 export default {
-  name: "content",
   data(){
     return{
+      imgSrc:'',
+      detailsContent:'',
+      title:'',
+      time:'',
+      type:'',
+      ContentId:'',
     }
   },
   components:{
@@ -35,14 +40,16 @@ export default {
       this.$store.commit('addPageNum')
       this.$store.state.loading='Loading...'
     },
-    getDetails(){
-      this.axios.get('https://www.bh3.com/content/bh3Cn/getContent?contentId=11734&around=1').then((res)=>{
-        console.log(res)
-      })
-    }
   },
   created() {
-    this.getDetails()
+    this.axios.get('https://www.bh3.com/content/bh3Cn/getContent?contentId='+this.$route.params.Content+'&around=1').then((res)=>{
+      this.imgSrc = res.data.data.ext[1].value[0].url
+      this.detailsContent = res.data.data.content
+      this.title = res.data.data.title
+      this.time = res.data.data.start_time
+      this.type = res.data.data.channelId
+      this.ContentId = res.data.data.contentId
+    })
   }
 }
 </script>
