@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: "details",
+  name: "detail",
   props:[
     'detailsContent'
   ],

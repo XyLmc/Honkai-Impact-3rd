@@ -159,6 +159,7 @@ export default {
     },
     goToNewContent(index){
       this.$router.replace("/newsContent/0/"+index)
+
     },
     GetNewsState(index) {
       this.NewsState = []

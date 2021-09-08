@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import {request} from '../../network/request'
 export default {
   name: "contentList",
   data(){
@@ -35,16 +36,44 @@ export default {
     }
   },
   watch:{
+    // listItemId(newId,oldId){
+    //   console.log(oldId+'111')
+    //   this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum=1&channelId='+newId).then((res)=>{
+    //     this.listItem=res.data.data.list
+    //     console.log(res.data.data.list)
+    //   })
+    // },
     listItemId(newId,oldId){
       console.log(oldId+'111')
-      this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum=1&channelId='+newId).then((res)=>{
+      request({
+        url:'content/bh3Cn/getContentList',
+        params:{
+          pageSize:10,
+          pageNum:1,
+          channelId:newId
+        }
+      }).then((res)=>{
         this.listItem=res.data.data.list
         console.log(res.data.data.list)
       })
     },
+    // pageNumId(newId,oldId){
+    //   console.log(oldId)
+    //   this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum='+newId+'&channelId='+this.listItemId).then((res)=>{
+    //     let moreList = res.data.data.list
+    //     this.listItem=this.listItem.concat(moreList)
+    //   })
+    // },
     pageNumId(newId,oldId){
       console.log(oldId)
-      this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum='+newId+'&channelId='+this.listItemId).then((res)=>{
+      request({
+        url:'content/bh3Cn/getContentList',
+        params:{
+          pageSize:10,
+          pageNum:newId,
+          channelId:this.listItemId
+        }
+      }).then((res)=>{
         let moreList = res.data.data.list
         this.listItem=this.listItem.concat(moreList)
       })
