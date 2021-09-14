@@ -3,13 +3,13 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import news from '@/views/news/Home'
-import newsDetail from '@/views/newContent/Home'
-import role from '@/views/role/Home'
-import roleDetail from '@/views/roledetails/Home'
-import wallpaper from '@/views/wallpaper/Home'
-import image from "@/views/wallpaper/image";
-import home from '@/views/HOME/HOME';
+const news = () => import('@/views/news/Home')
+const newsDetail = () => import('@/views/newContent/Home')
+const role = ()=> import('@/views/role/Home')
+const roleDetail = () => import('@/views/roledetails/Home')
+const wallpaper = () => import('@/views/wallpaper/Home')
+const image = () => import("@/views/wallpaper/image")
+const home = () => import('@/views/home/HOME')
 
 export default new VueRouter({
     routes: [

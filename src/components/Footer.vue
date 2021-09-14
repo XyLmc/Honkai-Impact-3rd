@@ -71,7 +71,8 @@ export default {
   height: 365px;
   min-width: 1600px;
   background-color: #111;
-  z-index: 1000;
+  left: -1px;
+  /* z-index: 1000; */
 }
 
 .footer-list-bg {

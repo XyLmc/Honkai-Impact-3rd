@@ -5,7 +5,7 @@
       <banner :imgSrc="imgSrc"></banner>
       <de-tail-head :title="title" :time="time" :type="type"></de-tail-head>
       <de-tail :detailsContent="detailsContent"></de-tail>
-      <de-tail-foot :channelId="type" :time="time" :ContentId="ContentId"></de-tail-foot>
+      <!-- <de-tail-foot :channelId="type" :time="time" :ContentId="ContentId"></de-tail-foot> -->
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ import contentBack from "@/views/newContent/contentBack";
 import banner from "@/views/newContent/banner";
 import deTail from "@/views/newContent/details";
 import deTailHead from "@/views/newContent/details-head"
-import deTailFoot from "@/views/newContent/details-footer"
+// import deTailFoot from "@/views/newContent/details-footer"
 export default {
   data(){
     return{
@@ -28,7 +28,8 @@ export default {
     }
   },
   components:{
-    contentBack,banner,deTail,deTailHead,deTailFoot
+    contentBack,banner,deTail,deTailHead
+    // ,deTailFoot
   },
   computed:{
     look(){

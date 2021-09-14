@@ -1,65 +1,114 @@
 <template>
   <div class="HOME_Header">
-    <video poster="../../assets/images/BengHuai/BodyImage1.jpg" autoplay="autoplay" autobuffer="" loop="loop"
-           muted="muted" class="HOME_Header_Video">
-      <source src="../../assets/video/Home_HeaderVideo.mp4" type="audio/mp4">
-    </video>
-    <img src="../../assets/images/BengHuai/Logo.png" class="HOME_Header_Logo">
-    <img src="../../assets/images/BengHuai/Age.png" class="HOME_Header_Age">
+    <video
+      poster="../../assets/images/BengHuai/BodyImage1.jpg"
+      autoplay="autoplay"
+      autobuffer=""
+      loop="loop"
+      muted="muted"
+      class="HOME_Header_Video"
+      
+    ></video>
+    <!-- src="../../assets/video/Home_HeaderVideo.mp4" -->
+    <img src="../../assets/images/BengHuai/Logo.png" class="HOME_Header_Logo" />
+    <img src="../../assets/images/BengHuai/Age.png" class="HOME_Header_Age" />
     <div class="HOME_Header_DownLoad">
       <div class="HOME_Header_DownLoad_Pv">
         <!--          这里是pv封面视频-->
-        <video autoplay="autoplay" autobuffer="" loop="loop" muted="muted" :src="pvCover"></video>
+        <video
+          autoplay="autoplay"
+          autobuffer=""
+          loop="loop"
+          muted="muted"
+          :src="pvCover"
+        ></video>
 
-<!--        这是pv封面视频的播放按钮-->
+        <!--        这是pv封面视频的播放按钮-->
         <div class="video-btn" @click="pvAppear"></div>
-
       </div>
       <div class="HOME_Header_DownLoad_Box">
         <div class="lightStick"></div>
-        <img src="../../assets/images/BengHuai/QRBoard.png" class="HOME_Header_DownLoad_Box_QRBoard">
-        <img src="../../assets/images/BengHuai/QRCode.png" class="HOME_Header_DownLoad_Box_QRCode">
-        <a href="https://api-takumi.mihoyo.com/event/download_porter/link/bh3_cn/bh3/pc_mumu" target="_blank">模拟器下载</a>
+        <img
+          src="../../assets/images/BengHuai/QRBoard.png"
+          class="HOME_Header_DownLoad_Box_QRBoard"
+        />
+        <img
+          src="../../assets/images/BengHuai/QRCode.png"
+          class="HOME_Header_DownLoad_Box_QRCode"
+        />
+        <a
+          href="https://api-takumi.mihoyo.com/event/download_porter/link/bh3_cn/bh3/pc_mumu"
+          target="_blank"
+          >模拟器下载</a
+        >
         <div class="HOME_Header_DownLoad_Box_Btn1" @click="DownLoadBtn(1)">
-          <img src="../../assets/images/BengHuai/DesktopIcon.png"
-               style="position: absolute; left: 10px; top: 12px; width: 28px">
+          <img
+            src="../../assets/images/BengHuai/DesktopIcon.png"
+            style="position: absolute; left: 10px; top: 12px; width: 28px"
+          />
           <p>崩坏3桌面版下载</p>
         </div>
         <div class="HOME_Header_DownLoad_Box_Btn2" @click="DownLoadBtn(2)">
-          <img src="../../assets/images/BengHuai/AndroidIcon.png"
-               style="position: absolute; left: 10px; top: 12px; width: 28px">
+          <img
+            src="../../assets/images/BengHuai/AndroidIcon.png"
+            style="position: absolute; left: 10px; top: 12px; width: 28px"
+          />
           <p>Android下载</p>
         </div>
       </div>
     </div>
-<!--    新闻部分-->
+    <!--    新闻部分-->
     <div class="HOME_Header_News">
-<!--      新闻的轮播图部分-->
+      <!--      新闻的轮播图部分-->
       <div class="swiper-container" v-swiper:mySwiper="swiperOption" id="pa">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" :key="index" v-for="(banner, index) in banners">
-            <img :src="banner.ext[0].value[0].url" @click="NewsJump(banner.ext[1].value)"
-                 style="cursor: pointer; width: 640px; height: 280px; border-radius: 5px">
+          <div
+            class="swiper-slide"
+            :key="index"
+            v-for="(banner, index) in banners"
+          >
+            <img
+              :src="banner.ext[0].value[0].url"
+              @click="NewsJump(banner.ext[1].value)"
+              style="
+                cursor: pointer;
+                width: 640px;
+                height: 280px;
+                border-radius: 5px;
+              "
+            />
           </div>
         </div>
         <div class="swiper-pagination"></div>
       </div>
-<!--      新闻的信息上的按钮部分-->
-      <div class="HOME_Header_News_Btn" v-for="(news, index) in NewsBtn" :key=index :style="NewsBtn_Left[index]"
-           :class="{NewsBtn_Select:newsSelect==index}" @click="NewsBtnLink(index)">
+      <!--      新闻的信息上的按钮部分-->
+      <div
+        class="HOME_Header_News_Btn"
+        v-for="(news, index) in NewsBtn"
+        :key="index"
+        :style="NewsBtn_Left[index]"
+        :class="{ NewsBtn_Select: newsSelect == index }"
+        @click="NewsBtnLink(index)"
+      >
         <span>{{ news }}</span>
       </div>
-<!--      新闻的标题还有时间部分-->
-      <div class="HOME_Header_News_State" :key="state" v-for="(state, index) in NewsState" :style="NewsState_Top[index]"
-           @click="goToNewContent(ContentId[index])">
+      <!--      新闻的标题还有时间部分-->
+      <div
+        class="HOME_Header_News_State"
+        :key="state"
+        v-for="(state, index) in NewsState"
+        :style="NewsState_Top[index]"
+        @click="goToNewContent(ContentId[index])"
+      >
         <div class="message">{{ state }}</div>
-        <span style="position: absolute; right: 0px; top: 0px">{{ NewsDate[index] }}</span>
+        <span style="position: absolute; right: 0px; top: 0px">{{
+          NewsDate[index]
+        }}</span>
       </div>
       <a class="HOME_Header_News_More" href="#" @click="More">查看全部</a>
     </div>
   </div>
 </template>
-<!--https://www.bh3.com/content/bh3Cn/getContentList?pageSize=6&pageNum=1&channelId=170-->
 <script>
 export default {
   name: "HOME_Header",
@@ -67,16 +116,27 @@ export default {
     return {
       banners: [],
       NewsBtn: ["最新", "动态", "公告", "活动", "补给"],
-      NewsBtn_Left: [{left: '680px'}, {left: '789px'}, {left: '898px'}, {left: '1007px'}, {left: '1116px'}],
-      NewsState_Top: [{top: '75px'}, {top: '119px'}, {top: '163px'}, {top: '207px'}],
+      NewsBtn_Left: [
+        { left: "680px" },
+        { left: "789px" },
+        { left: "898px" },
+        { left: "1007px" },
+        { left: "1116px" },
+      ],
+      NewsState_Top: [
+        { top: "75px" },
+        { top: "119px" },
+        { top: "163px" },
+        { top: "207px" },
+      ],
       NewsState: [],
       ContentId: [],
       NewsDate: [],
       newsSelect: 0,
-      listItem:[],
+      listItem: [],
 
       //pv封面
-      pvCover:'',
+      pvCover: "",
       swiperOption: {
         loop: true,
         autoplay: {
@@ -87,132 +147,159 @@ export default {
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
-          bulletClass:'my-bullet',
-          bulletActiveClass: 'my-bullet-active',
+          bulletClass: "my-bullet",
+          bulletActiveClass: "my-bullet-active",
         },
       },
-    }
+    };
   },
-  computed:{
-    listItemId(){
-      return this.$store.state.getListId
+  computed: {
+    listItemId() {
+      return this.$store.state.getListId;
     },
-    pageNumId(){
-      return this.$store.state.pageNum
-    }
+    pageNumId() {
+      return this.$store.state.pageNum;
+    },
   },
-  watch:{
-    listItemId(newId,oldId){
-      oldId.replace()
-      this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum=1&channelId='+newId).then((res)=>{
-        this.listItem=res.data.data.list
-      })
+  watch: {
+    listItemId(newId, oldId) {
+      oldId.replace();
+      this.axios
+        .get(
+          "https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum=1&channelId=" +
+            newId
+        )
+        .then((res) => {
+          this.listItem = res.data.data.list;
+        });
     },
-    pageNumId(newId,oldId){
-      oldId.replace()
-      this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum='+newId+'&channelId='+this.listItemId).then((res)=>{
-        let moreList = res.data.data.list
-        this.listItem=this.listItem.concat(moreList)
-      })
+    pageNumId(newId, oldId) {
+      oldId.replace();
+      this.axios
+        .get(
+          "https://www.bh3.com/content/bh3Cn/getContentList?pageSize=10&pageNum=" +
+            newId +
+            "&channelId=" +
+            this.listItemId
+        )
+        .then((res) => {
+          let moreList = res.data.data.list;
+          this.listItem = this.listItem.concat(moreList);
+        });
     },
-    listItem(newValue,oldValue){
-      if(newValue.length>oldValue.length){
-        this.$store.state.loading='查看更多'
+    listItem(newValue, oldValue) {
+      if (newValue.length > oldValue.length) {
+        this.$store.state.loading = "查看更多";
       }
-    }
+    },
   },
   created() {
-    this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=6&pageNum=1&channelId=168').then((res) => {
-      for (var i = 0; i < res.data.data.list.length; i++) {
-        this.banners.push(res.data.data.list[i])
-      }
-    })
-    this.GetNewsState(0)
+    this.axios
+      .get(
+        "https://www.bh3.com/content/bh3Cn/getContentList?pageSize=6&pageNum=1&channelId=168"
+      )
+      .then((res) => {
+        for (var i = 0; i < res.data.data.list.length; i++) {
+          this.banners.push(res.data.data.list[i]);
+        }
+      });
+    this.GetNewsState(0);
 
     // 获取首页扫码下载右边的pv封面视频，还有视频本体
-    this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=6&pageNum=1&channelId=170').then((res)=>{
-      //获取首页pv的封面视频路径
-      this.pvCover = res.data.data.list[0].ext[0].value[0].url
-      this.$store.state.homeVideo = res.data.data.list[0].ext[1].value[0].url
-    })
+    this.axios
+      .get(
+        "https://www.bh3.com/content/bh3Cn/getContentList?pageSize=6&pageNum=1&channelId=170"
+      )
+      .then((res) => {
+        //获取首页pv的封面视频路径
+        this.pvCover = res.data.data.list[0].ext[0].value[0].url;
+        this.$store.state.homeVideo = res.data.data.list[0].ext[1].value[0].url;
+      });
   },
   methods: {
-    pvAppear(){
-      this.$store.state.pvAppear=true
+    pvAppear() {
+      this.$store.state.pvAppear = true;
     },
     More() {
-      this.$store.commit('ChangeNav', 1)
-      this.$router.replace("/news")
+      this.$store.commit("ChangeNav", 1);
+      this.$router.replace("/news");
     },
     NewsJump(index) {
-      if(index.indexOf("/news/")){
-        window.open(index)
-        return
-      }
-      else{
-        index = index.replace("/news/","")
-        document.documentElement.scrollTop = 0
+      if (index.indexOf("/news/")) {
+        window.open(index);
+        return;
+      } else {
+        index = index.replace("/news/", "");
+        document.documentElement.scrollTop = 0;
         // this.$store.state.details = index
-        this.$store.commit('ChangeNav', 1)
-        this.$router.replace("/newsContent/0/"+index)
+        this.$store.commit("ChangeNav", 1);
+        this.$router.replace("/newsContent/0/" + index);
       }
     },
-    goToNewContent(index){
-      this.$router.replace("/newsContent/0/"+index)
-
+    goToNewContent(index) {
+      this.$router.replace("/newsContent/0/" + index);
     },
     GetNewsState(index) {
-      this.NewsState = []
-      this.NewsDate = []
-      this.ContentId = []
-      this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=4&pageNum=1&channelId=' + (171 + index)).then((res) => {
-        for (var i = 0; i < res.data.data.list.length; i++) {
-          switch (res.data.data.list[i].channelId[0]) {
-            case "171": {
-              this.NewsState.push("[ 新闻 ] " + res.data.data.list[i].title)
-              this.ContentId.push(res.data.data.list[i].contentId)
-              break;
+      this.NewsState = [];
+      this.NewsDate = [];
+      this.ContentId = [];
+      this.axios
+        .get(
+          "https://www.bh3.com/content/bh3Cn/getContentList?pageSize=4&pageNum=1&channelId=" +
+            (171 + index)
+        )
+        .then((res) => {
+          for (var i = 0; i < res.data.data.list.length; i++) {
+            switch (res.data.data.list[i].channelId[0]) {
+              case "171": {
+                this.NewsState.push("[ 新闻 ] " + res.data.data.list[i].title);
+                this.ContentId.push(res.data.data.list[i].contentId);
+                break;
+              }
+              case "172": {
+                this.NewsState.push("[ 动态 ] " + res.data.data.list[i].title);
+                this.ContentId.push(res.data.data.list[i].contentId);
+                break;
+              }
+              case "173": {
+                this.NewsState.push("[ 公告 ] " + res.data.data.list[i].title);
+                this.ContentId.push(res.data.data.list[i].contentId);
+                break;
+              }
+              case "174": {
+                this.NewsState.push("[ 活动 ] " + res.data.data.list[i].title);
+                this.ContentId.push(res.data.data.list[i].contentId);
+                break;
+              }
+              default: {
+                this.NewsState.push("[ 补给 ] " + res.data.data.list[i].title);
+                this.ContentId.push(res.data.data.list[i].contentId);
+                break;
+              }
             }
-            case "172": {
-              this.NewsState.push("[ 动态 ] " + res.data.data.list[i].title)
-              this.ContentId.push(res.data.data.list[i].contentId)
-              break;
-            }
-            case "173": {
-              this.NewsState.push("[ 公告 ] " + res.data.data.list[i].title)
-              this.ContentId.push(res.data.data.list[i].contentId)
-              break;
-            }
-            case "174": {
-              this.NewsState.push("[ 活动 ] " + res.data.data.list[i].title)
-              this.ContentId.push(res.data.data.list[i].contentId)
-              break;
-            }
-            default: {
-              this.NewsState.push("[ 补给 ] " + res.data.data.list[i].title)
-              this.ContentId.push(res.data.data.list[i].contentId)
-              break;
-            }
+            this.NewsDate.push(res.data.data.list[i].start_time.split(" ")[0]);
           }
-          this.NewsDate.push(res.data.data.list[i].start_time.split(' ')[0])
-        }
-      })
+        });
     },
     DownLoadBtn(index) {
       if (index == 1) {
-        window.open("https://api-takumi.mihoyo.com/event/download_porter/link/bh3_cn/bh3/pc_official")
+        window.open(
+          "https://api-takumi.mihoyo.com/event/download_porter/link/bh3_cn/bh3/pc_official"
+        );
       } else {
-        window.open("https://api-takumi.mihoyo.com/event/download_porter/link/bh3_cn/bh3/android_official")
+        window.open(
+          "https://api-takumi.mihoyo.com/event/download_porter/link/bh3_cn/bh3/android_official"
+        );
       }
     },
     NewsBtnLink(index) {
       if (index != this.newsSelect) {
-        this.newsSelect = index
-        this.GetNewsState(this.newsSelect)
+        this.newsSelect = index;
+        this.GetNewsState(this.newsSelect);
       }
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -220,31 +307,31 @@ export default {
   margin: 0;
   padding: 0;
   list-style: none;
-  user-select: none
+  user-select: none;
 }
 
-.HOME_Header{
+.HOME_Header {
   position: relative;
   height: 1386px;
   overflow: hidden;
-  &_Video{
+  &_Video {
     position: absolute;
     top: 0;
-    left: 0
+    left: 0;
   }
-  &-Logo{
+  &-Logo {
     position: absolute;
     left: 50%;
     top: 112px;
     margin-left: 356px;
-    width: 250px
+    width: 250px;
   }
-  &_Age{
+  &_Age {
     position: absolute;
     left: 50%;
     top: 125px;
     margin-left: 630px;
-    width: 120px
+    width: 120px;
   }
   &_DownLoad {
     position: absolute;
@@ -262,10 +349,10 @@ export default {
       border-radius: 5px;
       padding: 5px;
       display: flex;
-      video{
+      video {
         width: 240px;
         height: 130px;
-        opacity: 0.8
+        opacity: 0.8;
       }
     }
     &_Box {
@@ -286,7 +373,7 @@ export default {
         text-decoration: none;
         color: #00a5e2;
         top: 32px;
-        left: 144px
+        left: 144px;
       }
       p {
         font-size: 16px;
@@ -294,20 +381,20 @@ export default {
         color: #fff;
         position: absolute;
         left: 46px;
-        top: 14px
+        top: 14px;
       }
       &_QRBoard {
         position: absolute;
         left: 10px;
         top: 7px;
         width: 166px;
-        height: 122px
+        height: 122px;
       }
       &_QRCode {
         position: absolute;
         left: 24px;
         top: 29px;
-        width: 93px
+        width: 93px;
       }
       &_Btn1 {
         background: #00a5e2;
@@ -317,8 +404,8 @@ export default {
         left: 184px;
         top: 15px;
         border-radius: 5px;
-        &:hover{
-          background: #33c8ff
+        &:hover {
+          background: #33c8ff;
         }
       }
       &_Btn2 {
@@ -330,7 +417,7 @@ export default {
         top: 77px;
         border-radius: 5px;
         &:hover {
-          background: #5edf00
+          background: #5edf00;
         }
       }
     }
@@ -341,7 +428,8 @@ export default {
     height: 326px;
     bottom: 54px;
     left: 50%;
-    background: url('../../assets/images/BengHuai/HeaderNewsBoard.png') no-repeat;
+    background: url("../../assets/images/BengHuai/HeaderNewsBoard.png")
+      no-repeat;
     background-size: 100% 100%;
     transform: translateX(-50%);
     &_Btn {
@@ -356,22 +444,22 @@ export default {
       color: #fff;
       border-radius: 6px;
       transform: skew(-20deg);
-      &:hover{
+      &:hover {
         color: #0097de;
-        background: #fff
+        background: #fff;
       }
       span {
         font-size: 20px;
         font-weight: bold;
         line-height: 39px;
         display: inline-block;
-        transform: skew(20deg)
+        transform: skew(20deg);
       }
     }
   }
 }
 
-.lightStick{
+.lightStick {
   position: absolute;
   left: 15px;
   top: 25px;
@@ -384,16 +472,15 @@ export default {
 }
 
 @keyframes lightStick {
-  0%{
+  0% {
     top: 25px;
   }
-  100%{
+  100% {
     top: 115px;
   }
-
 }
 
-.video-btn{
+.video-btn {
   position: absolute;
   width: 65px;
   height: 87px;
@@ -402,15 +489,15 @@ export default {
   top: 50%;
   background: url("../../assets/images/BengHuai/video-btn.png") no-repeat;
   background-size: 100% 100%;
-  transform: translate3d(-50%,-50%,0);
-  &:hover{
+  transform: translate3d(-50%, -50%, 0);
+  &:hover {
     background: url("../../assets/images/BengHuai/video-btn-on.png") no-repeat;
     background-size: 100% 100%;
   }
 }
 .NewsBtn_Select {
   color: #0097de;
-  background: #fff
+  background: #fff;
 }
 
 .HOME_Header_News_More {
@@ -426,11 +513,11 @@ export default {
   font-size: 16px;
   font-weight: 400;
   color: #333;
-  text-decoration: none
+  text-decoration: none;
 }
 
 .HOME_Header_News_More:hover {
-  background: #fff
+  background: #fff;
 }
 
 .HOME_Header_News_State {
@@ -444,10 +531,10 @@ export default {
   width: 548px;
   height: 44px;
   left: 674px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3)
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.message{
+.message {
   text-overflow: ellipsis;
   width: 450px;
   white-space: nowrap;
@@ -455,12 +542,12 @@ export default {
 }
 
 .HOME_Header_News_State:hover .message {
-  color: #fedf4c
+  color: #fedf4c;
 }
 
 ::v-deep .my-bullet {
   display: block;
-  width:12px;
+  width: 12px;
   height: 12px;
   background: url("../../assets/images/BengHuai/bullet.png") no-repeat;
   cursor: pointer;

@@ -10,20 +10,23 @@
           {{item.ext[1].value}}
         </div>
       </div>
-      <div class="roles" >
-        <a class="" v-for="(items,indexs) in roleItem" :key="indexs">
-          <div class="base-role-btn" v-if="item.type==items.type" @click="roleDetail(items,item.ext[0].value,item.ext[1].value,indexs)">
-            <div class="imgbox">
-              <img :src=items.ext[4].value[0].url alt="米哈游">
+      <div class="roles">
+          <a v-for="(items,indexs) in roleItem" :key="indexs">
+            <div  class="base-role-btn" v-if="item.title == items.type.replace('官网','')" @click="roleDetail(items,item.ext[0].value,item.ext[1].value,indexs)">
+              <div class="imgbox">
+                <img :src=items.ext[4].value[0].url alt="米哈游">
+              </div>
             </div>
-          </div>
-        </a>
+            <slot></slot>
+          </a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {request} from '../../network/request'
+
 export default {
   name: "wrapitem",
   data(){
@@ -41,18 +44,32 @@ export default {
       this.$router.replace('/roledetail')
     }
   },
-  mounted(){
-    this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=200&pageNum=1&channelId=183').then((res)=>{
-      // console.log(res.data.data.list)
+  created(){
+    request({
+      url:'/content/bh3Cn/getContentList',
+      params:{
+        pageSize:200,
+        pageNum:1,
+        channelId:183
+      }
+    }).then((res)=>{
+      console.log(res.data.data.list)
       this.listItem=res.data.data.list
       this.$store.state.listAllItem = res.data.data.list
     })
-    this.axios.get('https://www.bh3.com/content/bh3Cn/getContentList?pageSize=200&pageNum=1&channelId=181').then((res)=>{
-      // console.log(res.data.data.list)
+    request({
+      url:'/content/bh3Cn/getContentList',
+      params:{
+        pageSize:200,
+        pageNum:1,
+        channelId:181
+      }
+    }).then((res)=>{
+      console.log(res.data.data.list)
       this.roleItem=res.data.data.list
       this.$store.state.roleAllItem = res.data.data.list
     })
-  }
+  },
 }
 </script>
 <style scoped>
